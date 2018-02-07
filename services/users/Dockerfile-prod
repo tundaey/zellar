@@ -1,0 +1,33 @@
+FROM python:3.6.3
+
+# install environment dependencies
+RUN apt-get update -yqq \
+&& apt-get install -yqq --no-install-recommends \
+netcat \
+&& apt-get -q clean \
+&& apt-get install -y dos2unix
+
+# set working directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# add entrypoint.sh
+ADD ./entrypoint-prod.sh /usr/src/app/entrypoint-prod.sh
+ADD ./entrypoint-p.sh /usr/src/app/entrypoint-p.sh
+RUN chmod 0777 /usr/src/app/entrypoint-prod.sh
+
+#RUN dos2unix ./entrypoint-prod.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
+
+# add requirements
+ADD ./requirements.txt /usr/src/app/requirements.txt
+
+# install requirements
+RUN pip install -r requirements.txt
+
+# add app
+ADD . /usr/src/app
+
+
+# run server
+CMD ["./entrypoint-p.sh"]
+#CMD ["chmod", "+x", "./entrypoint-prod.sh"]
