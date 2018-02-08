@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios'
+import 'bulma/css/bulma.css'
+import './components/home.css'
 
-import { Switch, Route} from 'react-router-dom'
+import { Switch, Route, Link} from 'react-router-dom'
 
 import UserList from './components/UserList'
 import AddUser from './components/AddUser';
-import About from './components/About'
+import Signin from './components/Signin';
+import Home from './components/Home'
 
 class App extends Component {
     constructor(){
@@ -28,28 +31,25 @@ class App extends Component {
 
     render(){
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-4">
-                        <br/>
-                        <Switch>
-                            <Route exact path="/" render={()=> (
-                                <div>
-                                    <h1>All Users</h1>
-                                    <hr/><br/>
-                                    <AddUser
-                                        handleChange={this.handleChange}
-                                        email={this.state.email}
-                                        username={this.state.username} 
-                                        addUser={this.addUser}/>
-                                    <hr/><br/>
-                                    <UserList users={this.state.users}/>
-                                </div>
-                            )}/>
-                            <Route exact path='/about' component={About}/>
-                        </Switch>
-                    </div>
-                </div>
+            <div className="wrapper">
+                <Switch>
+                    <Route exact path="/" render={()=> (
+                        <div>
+                            <h1>All Users</h1>
+                            <hr/><br/>
+                            <Link to="/login">{'Sign In'}</Link>
+                            <AddUser
+                                handleChange={this.handleChange}
+                                email={this.state.email}
+                                username={this.state.username} 
+                                addUser={this.addUser}/>
+                            <hr/><br/>
+                            <UserList users={this.state.users}/>s
+                        </div>
+                    )}/>
+                    <Route path='/about' component={Home}/>
+                    <Route path='/login' component={Signin}/>
+                </Switch>
             </div>
         )
     }

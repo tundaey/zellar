@@ -1,0 +1,69 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  /* font-family: 'Georgia'; */
+  font-family: myriad-pro, sans-serif;
+  padding:0;
+  margin:0;
+}
+
+.wrapper {
+    /* layout */
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+.slide {
+    /* layout */
+    height: 100vh;
+    min-width: 100vh;
+    flex: 1;
+    display: flex;
+    /* content styling OPTIONAL*/
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10vh;
+    /* background styling */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Background images on each slide */
+
+.a {
+    z-index: -1;
+    background-image: url('./home.png');
+}
+
+.my-text {
+    color: white;
+    font-family: myriad-pro, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.title {
+    color: white;
+    font-family: myriad-pro, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+}
+
+.small-description {
+    color: white;
+    font-weight: 400;
+    font-family: myriad-pro, sans-serif;
+    font-size: 24px;
+}
+
+.home-button {
+    margin-top: 1em;
+    margin-right: 1em;
+}
